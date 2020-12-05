@@ -119,12 +119,13 @@ int main()
     cout<<"-------------------------------------------"<<endl;
     //输出每个字符的编码
 
-    cout<<"coding the input passage"<<endl;
+    cout<<"coding the input passage"<<endl<<endl;
     passageCoding(myinput,codeList,n);//输出一开始输入的“文章”的编码
     cout<<endl;
     cout<<"-------------------------------------------"<<endl;
     cout<<"input a string of Huffman code, using the coding method as afore-mentioned"<<endl;
     cout<<"you can copy the code output above, and input it to see if it can be successfully decoded"<<endl;
+    cout<<"mind that big letters and small letters with be both recognised as small letters"<<endl<<endl;
 
     decode(HTree,n,charList);
 

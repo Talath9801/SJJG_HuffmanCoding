@@ -45,12 +45,12 @@ void createHTree(HuffmanTree &HTree,int w[],int n)
     }//初态构造
 
     priority_queue<int,vector<int>,greater<int> > myqueue;//优先队列，用来操作结点
+    bool flag[62]={0};//树的结点是否被操作过
     for(int i=0;i<n;i++)
     {
         //将权值放到优先队列中
         myqueue.push(w[i]);
     }
-
     //优先队列中的结点个数大于等于2时，将最小的两个元素记住，求和
     //最小的两个元素出队，新生成的和入队
     //在哈夫曼树中相应进行操作——两个最小结点---填写parent结点
@@ -67,17 +67,20 @@ void createHTree(HuffmanTree &HTree,int w[],int n)
         int minPos1,minPos2;//最小权值的存储位置
         for(int i=1;i<=totalNum;i++)
         {
-            if(HTree[i].weight==minW1)
+            if(HTree[i].weight==minW1&&flag[i]==0)
             {
                 minPos1=i;
+                flag[i]=1;
                 break;
             }
         }
         for(int i=1;i<=totalNum;i++)
         {
-            if(HTree[i].weight==minW2&&i!=minPos1)
+            if(HTree[i].weight==minW2&&i!=minPos1&&flag[i]==0)
             {
                 minPos2=i;
+                flag[i]=1;
+                break;
             }
         }
         //下面构造新结点
@@ -156,7 +159,7 @@ void passageCoding(vector<char> str,Node codelist[],int n)
             break;
         for(int j=1;j<=n;j++)
         {
-            if(str[i]==codelist[j].ch)
+            if(str[i]==codelist[j].ch||str[i]==codelist[j].ch-32)//大小写等同处理
             {
                 PrintVector(codelist[j].charCode);
                 break;
